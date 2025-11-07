@@ -7,7 +7,6 @@ import { Switch } from "@/components/ui/switch";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
-import { Sparkles } from "lucide-react";
 
 const Index = () => {
   const [pdfFile, setPdfFile] = useState<File | null>(null);
@@ -169,7 +168,6 @@ const Index = () => {
                 disabled={isLoading || !pdfFile || !jsonText || !label}
                 className="min-w-[200px]"
               >
-                <Sparkles className="mr-2 h-5 w-5" />
                 {isLoading ? "Extraindo..." : "EXTRAIR DADOS"}
               </Button>
             </div>

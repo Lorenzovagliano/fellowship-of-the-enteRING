@@ -228,6 +228,7 @@ final = {**heuristic_result, **llm_result}  # método: "hybrid"
 - **Vite**: Build tool
 - **TailwindCSS**: Estilização
 - **shadcn/ui**: Componentes UI
+- *Interface desenvolvida com Lovable*
 
 ### Infraestrutura
 - **Docker + Docker Compose**: Containerização

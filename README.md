@@ -18,6 +18,8 @@ Extrair informações estruturadas de arquivos PDF de forma **síncrona**, com *
 
 ## Início Rápido
 
+*OBS: O modo batch via CLI local é mais prático para processamento em massa.*
+
 ### Pré-requisitos
 
 - Docker e Docker Compose
@@ -140,7 +142,7 @@ Para desenvolvimento ou processamento em batch sem a necessidade da API REST, vo
 
 #### Configuração do Ambiente Local
 
-Dependência: `Poetry`
+Dependência: [Poetry](https://python-poetry.org/docs/)
 
 1. **Navegue até o diretório do backend**:
 ```bash

@@ -56,6 +56,16 @@ cp .env.example .env
 4. Faça upload do arquivo PDF
 5. Clique em "Extrair Dados"
 
+Exemplo de Input válido na UI:
+- Label:
+```
+carteira_oab
+```
+- Schema:
+```
+{"nome":"Nome do profissional, normalmente no canto superior esquerdo da imagem","inscricao":"Número de inscrição do profissional","seccional":"Seccional do profissional","subsecao":"Subseção da qual o profissional faz parte","categoria":"Categoria, pode ser ADVOGADO, ADVOGADA, SUPLEMENTAR, ESTAGIÁRIO ou ESTAGIÁRIA","endereco_profissional":"Endereço do profissional","telefone_profissional":"Telefone do profissional","situacao":"Situação do profissional, normalmente no canto inferior direito."}
+```
+
 ### Uso via API REST
 
 ```bash

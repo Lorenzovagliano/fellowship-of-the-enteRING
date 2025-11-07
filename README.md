@@ -18,7 +18,7 @@ Extrair informações estruturadas de arquivos PDF de forma **síncrona**, com *
 
 ## Início Rápido
 
-*OBS: O modo batch via CLI local é mais prático para processamento em massa.*
+*OBS: O modo batch via CLI local (explicado após API) é mais prático para processamento em massa.*
 
 ### Pré-requisitos
 

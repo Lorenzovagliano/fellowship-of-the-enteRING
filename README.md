@@ -2,6 +2,9 @@
 
 Sistema inteligente de extração de dados estruturados de arquivos PDF com otimização de custos e performance através de cache multinível e heurísticas.
 
+<img width="1398" height="778" alt="image" src="https://github.com/user-attachments/assets/b464994e-b44d-494d-912b-e3b8d7c44685" />
+
+
 ## Objetivo
 
 Extrair informações estruturadas de arquivos PDF de forma **síncrona**, com **melhor custo-benefício** e **acurácia** possível, atendendo aos seguintes requisitos:

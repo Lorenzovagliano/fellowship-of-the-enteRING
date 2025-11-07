@@ -82,9 +82,9 @@ curl -X POST "http://localhost:8000/extract" \
 
 Para processar vários PDFs de uma só vez, use o endpoint `/extract/batch`:
 
+Use um arquivo como esse `requests.json`:
+
 ```bash
-# 1. Crie um arquivo com as requisições (requests.json)
-cat > requests.json << 'EOF'
 [
   {
     "label": "carteira_oab",
@@ -103,9 +103,12 @@ cat > requests.json << 'EOF'
     }
   }
 ]
-EOF
+```
 
-# 2. Faça a requisição batch (PDFs devem estar na mesma ordem das requisições)
+
+
+Faça a requisição batch (PDFs devem estar na mesma ordem das requisições)
+```bash
 curl -X POST "http://localhost:8000/extract/batch" \
   -F "pdfs=@backend/examples/oab_1.pdf" \
   -F "pdfs=@backend/examples/invoice.pdf" \

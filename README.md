@@ -68,14 +68,71 @@ carteira_oab
 
 ### Uso via API REST
 
+#### Extração de documento único
+
 ```bash
 curl -X POST "http://localhost:8000/extract" \
   -F "pdf=@backend/examples/oab_1.pdf" \
   -F "label=carteira_oab" \
   -F 'schema={"nome":"Nome do profissional, normalmente no canto superior esquerdo da imagem","inscricao":"Número de inscrição do profissional","seccional":"Seccional do profissional","subsecao":"Subseção da qual o profissional faz parte","categoria":"Categoria, pode ser ADVOGADO, ADVOGADA, SUPLEMENTAR, ESTAGIÁRIO ou ESTAGIÁRIA","endereco_profissional":"Endereço do profissional","telefone_profissional":"Telefone do profissional","situacao":"Situação do profissional, normalmente no canto inferior direito."}' \
   -F 'use_cache=false'
-
 ```
+
+#### Extração em batch (múltiplos documentos)
+
+Para processar vários PDFs de uma só vez, use o endpoint `/extract/batch`:
+
+```bash
+# 1. Crie um arquivo com as requisições (requests.json)
+cat > requests.json << 'EOF'
+[
+  {
+    "label": "carteira_oab",
+    "extraction_schema": {
+      "nome": "Nome do profissional",
+      "inscricao": "Número de inscrição",
+      "seccional": "Seccional do profissional"
+    }
+  },
+  {
+    "label": "invoice",
+    "extraction_schema": {
+      "total": "Valor total",
+      "data": "Data do documento",
+      "numero": "Número da fatura"
+    }
+  }
+]
+EOF
+
+# 2. Faça a requisição batch (PDFs devem estar na mesma ordem das requisições)
+curl -X POST "http://localhost:8000/extract/batch" \
+  -F "pdfs=@backend/examples/oab_1.pdf" \
+  -F "pdfs=@backend/examples/invoice.pdf" \
+  -F "requests=$(cat requests.json)" \
+  -F "use_cache=true"
+```
+
+**Resposta esperada:**
+```json
+{
+  "results": [
+    {
+      "index": 0,
+      "data": { "nome": "...", "inscricao": "...", "seccional": "..." },
+      "metadata": { "method": "hybrid", "processing_time": 1.23 }
+    },
+    {
+      "index": 1,
+      "data": { "total": "...", "data": "...", "numero": "..." },
+      "metadata": { "method": "cache", "processing_time": 0.01 }
+    }
+  ],
+  "total_processed": 2
+}
+```
+
+
 
 ## Arquitetura
 

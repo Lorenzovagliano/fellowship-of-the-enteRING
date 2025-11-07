@@ -179,13 +179,16 @@ python -m pdfextractor.cli batch \
   --dataset examples/dataset.json \
   --stats \
   --verbose
+```
 
+```bash
 # Salvando resultados em arquivo
 python -m pdfextractor.cli batch \
   --dataset examples/dataset.json \
   --output results.json \
   --stats \
   --verbose
+  ```
 
 **Formato do arquivo dataset.json**:
 ```json

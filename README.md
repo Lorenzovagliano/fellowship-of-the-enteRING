@@ -156,25 +156,25 @@ PDF → Cache → Heurísticas → LLM → Resultado
        │ POST /extract
        ▼
 ┌─────────────────────────────────────────────┐
-│           API FastAPI (api.py)               │
+│           API FastAPI (api.py)              │
 │  - Validação (tamanho, formato, schema)     │
-│  - Parsing de parâmetros                     │
-└──────────────────┬───────────────────────────┘
+│  - Parsing de parâmetros                    │
+└──────────────────┬──────────────────────────┘
                    ▼
 ┌──────────────────────────────────────────────┐
-│      Pipeline (pipeline.py)                   │
-│                                               │
+│      Pipeline (pipeline.py)                  │
+│                                              │
 │  1. Cache.get(pdf, label, schema)            │
 │     └─► L1 → L2 → L3                         │
-│                                               │
-│  2. extract_text(pdf) via pdfplumber          │
-│                                               │
+│                                              │
+│  2. extract_text(pdf) via pdfplumber         │
+│                                              │
 │  3. Heuristics.extract_fields()              │
 │     └─► Regex patterns + confidence          │
-│                                               │
-│  4. LLM.extract_fields() ← apenas missing     │
+│                                              │
+│  4. LLM.extract_fields() ← apenas missing    │
 │     └─► OpenAI API (gpt-5-mini)              │
-│                                               │
+│                                              │
 │  5. Cache.set(result)                        │
 │     └─► L1 + L2 + campos individuais         │
 └──────────────────┬───────────────────────────┘

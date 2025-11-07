@@ -2,6 +2,8 @@
 
 Sistema inteligente de extração de dados estruturados de arquivos PDF com otimização de custos e performance através de cache multinível e heurísticas.
 
+*Interface desenvolvida com Lovable*
+
 <img width="1398" height="778" alt="image" src="https://github.com/user-attachments/assets/b464994e-b44d-494d-912b-e3b8d7c44685" />
 
 
@@ -228,7 +230,6 @@ final = {**heuristic_result, **llm_result}  # método: "hybrid"
 - **Vite**: Build tool
 - **TailwindCSS**: Estilização
 - **shadcn/ui**: Componentes UI
-- *Interface desenvolvida com Lovable*
 
 ### Infraestrutura
 - **Docker + Docker Compose**: Containerização

@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "pdfextractor"
+version = "0.1.0"
+description = ""
+authors = ["Lorenzo Vagliano <lorenzo.vagliano@most.com.br>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pdfplumber = "^0.11.7"
+openai = "^2.7.1"
+python-dotenv = "^1.2.1"
+diskcache = "^5.6.3"
+xxhash = "^3.6.0"
+fastapi = "^0.115.0"
+uvicorn = "^0.32.0"
+python-multipart = "^0.0.20"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.4.2"
+pytest-cov = "^7.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

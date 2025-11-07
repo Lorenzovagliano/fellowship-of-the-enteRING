@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: pdfextractor-api
+    ports:
+      - "8000:8000"
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL=${OPENAI_MODEL:-gpt-5-mini}
+      - CACHE_DIR=/app/storage/cache_data
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+      - MAX_PDF_SIZE_MB=10
+      - MAX_TEXT_LENGTH=10000
+    volumes:
+      - ./backend/storage:/app/storage
+      - ./backend/src:/app/src
+    networks:
+      - pdfextractor-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: pdfextractor-frontend
+    ports:
+      - "8080:8080"
+    environment:
+      - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - pdfextractor-network
+    stdin_open: true
+    tty: true
+
+networks:
+  pdfextractor-network:
+    driver: bridge
+
+volumes:
+  cache-data:

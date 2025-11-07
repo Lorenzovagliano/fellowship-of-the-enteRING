@@ -105,8 +105,6 @@ Use um arquivo como esse `requests.json`:
 ]
 ```
 
-
-
 Faça a requisição batch (PDFs devem estar na mesma ordem das requisições)
 ```bash
 curl -X POST "http://localhost:8000/extract/batch" \
@@ -135,6 +133,80 @@ curl -X POST "http://localhost:8000/extract/batch" \
 }
 ```
 
+
+### Uso Local via CLI
+
+Para desenvolvimento ou processamento em batch sem a necessidade da API REST, você pode executar o backend diretamente via linha de comando.
+
+#### Configuração do Ambiente Local
+
+Dependência: `Poetry`
+
+1. **Navegue até o diretório do backend**:
+```bash
+cd backend
+```
+
+2. **Configure as variáveis de ambiente**:
+```bash
+# Crie um arquivo .env no diretório backend
+echo "OPENAI_API_KEY=your-api-key-here" > .env
+```
+
+3. **Instale as dependências**
+
+```bash
+poetry install
+poetry shell
+```
+
+#### Comandos CLI Disponíveis
+
+**Extração de documento único**:
+```bash
+python -m pdfextractor.cli extract \
+  --pdf examples/oab_1.pdf \
+  --label carteira_oab \
+  --schema '{"nome":"Nome do profissional","inscricao":"Número de inscrição","seccional":"Seccional"}'
+```
+
+**Processamento em batch**:
+```bash
+# Usando o dataset de exemplo
+python -m pdfextractor.cli batch \
+  --dataset examples/dataset.json \
+  --stats \
+  --verbose
+
+# Salvando resultados em arquivo
+python -m pdfextractor.cli batch \
+  --dataset examples/dataset.json \
+  --output results.json \
+  --stats \
+  --verbose
+
+**Formato do arquivo dataset.json**:
+```json
+[
+  {
+    "label": "carteira_oab",
+    "extraction_schema": {
+      "nome": "Nome do profissional",
+      "inscricao": "Número de inscrição",
+      "seccional": "Seccional do profissional"
+    },
+    "pdf_path": "examples/oab_1.pdf"
+  },
+  {
+    "label": "invoice",
+    "extraction_schema": {
+      "total": "Valor total",
+      "data": "Data do documento"
+    },
+    "pdf_path": "examples/invoice.pdf"
+  }
+]
+```
 
 
 ## Arquitetura

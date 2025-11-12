@@ -30,7 +30,7 @@ Extrair informações estruturadas de arquivos PDF de forma **síncrona**, com *
 1. Clone o repositório:
 ```bash
 git clone <repository-url>
-cd pdfextractor2
+cd fellowship-of-the-enteRING
 ```
 
 2. Configure a chave da API:
@@ -39,7 +39,7 @@ cp .env.example .env
 # Edite .env e adicione sua OPENAI_API_KEY
 ```
 
-3. Inicie os serviços:
+3. Inicie os serviços (com o docker daemon rodando):
 ```bash
 ./start.sh
 ```
